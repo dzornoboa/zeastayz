@@ -1,0 +1,72 @@
+/* ZeaStayz editorial & discovery pages. Neutral Airbnb-inspired typography, blue actions. */
+:root{--zea-blue:#00158b;--zea-border:#ededed;--zea-muted:#717171}
+.discovery-content,.editorial-page{padding-bottom:32px}
+.discovery-content{padding-top:45px}
+.discovery-label{font-size:11px;letter-spacing:1.65px;font-weight:800;color:#00158b;margin-bottom:13px}
+.discovery-content h1,.editorial-heading h1{font-size:clamp(32px,4.1vw,50px);line-height:1.12;letter-spacing:-1.75px;font-weight:750;margin:0 0 14px}
+.lead-copy,.editorial-heading>p{font-size:16px;color:#717171;line-height:1.7;max-width:730px}
+.discovery-section{margin:53px 0 63px}
+.section-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:23px}
+.section-title h2,.discovery-section h2,.editorial-section h2{font-size:25px;line-height:1.25;letter-spacing:-.7px;margin:0 0 7px;color:#222}
+.section-title p{font-size:14px;color:#777;margin:0}
+.catalog-empty{background:#fafafa;border:1px solid #eeeeee;border-radius:19px;min-height:290px;padding:38px 26px;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.empty-art{display:flex;align-items:center;justify-content:center;width:70px;height:70px;border-radius:50%;background:#f0f2fc;color:#00158b;font-size:32px;margin-bottom:13px}
+.catalog-empty h2{font-size:23px;margin:0 0 12px;letter-spacing:-.45px}
+.catalog-empty p{font-size:14px;color:#666;line-height:1.7;margin:0 auto 22px;max-width:510px}
+.empty-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.outline-btn{display:inline-flex;justify-content:center;align-items:center;padding:13px 22px;border:1px solid #bebebe;border-radius:10px;background:#fff;color:#222;font-size:14px;font-weight:700;text-decoration:none}
+.outline-btn:hover{background:#f6f6f6}
+.catalog-empty .solid-btn,.editorial-cta .solid-btn,.contact-form .solid-btn,.concierge-hero-copy .solid-btn{border-radius:10px;background:#00158b;text-decoration:none}
+.category-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.category-tiles>a,.category-tiles>article{display:flex;flex-direction:column;align-items:flex-start;gap:9px;border:1px solid #e8e8e8;border-radius:16px;padding:24px;background:#fff;text-decoration:none;color:#222;transition:transform .2s,box-shadow .2s}
+.category-tiles>a:hover{transform:translateY(-3px);box-shadow:0 10px 25px #0000000a}
+.category-tiles span{font-size:27px;color:#00158b;line-height:1.1;min-height:33px}
+.category-tiles strong{font-size:17px;line-height:1.35}
+.category-tiles small{font-size:13px;color:#707070;line-height:1.55}
+.discovery-note{margin:36px 0 20px;padding:20px 23px;border:1px solid #e8e8e8;background:#fafafa;border-radius:12px;color:#555;font-size:13px;line-height:1.6}
+.editorial-page .breadcrumb{font-size:13px;display:flex;gap:10px;align-items:center;padding-top:24px;color:#777}
+.editorial-page .breadcrumb a{color:#555;text-decoration:none}
+.editorial-page .editorial-heading{padding:42px 0 40px}
+.editorial-heading>p{margin-bottom:0}
+.concierge-hero{display:grid;grid-template-columns:1.1fr 1fr;background:#f8f8f8;border-radius:22px;overflow:hidden;min-height:380px}
+.concierge-hero-photo{min-height:380px;background:#eef0f5}
+.concierge-hero-photo img{width:100%;height:100%;max-height:500px;object-fit:cover;display:block}
+.concierge-hero-copy{padding:clamp(27px,5vw,65px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.concierge-hero-copy h2,.about-copy h2{font-size:clamp(27px,3.2vw,38px);line-height:1.2;letter-spacing:-1px;margin:0 0 14px}
+.concierge-hero-copy p,.about-copy p{color:#626262;font-size:15px;line-height:1.85;margin:0 0 20px}
+.editorial-section{margin:70px 0}
+.founder-quote{margin:60px 0;padding:45px clamp(25px,5vw,65px);background:#f3f5ff;border-radius:20px;max-width:100%;text-align:center}
+.quote-mark{display:block;font-size:55px;font-family:Georgia,serif;color:#00158b;line-height:.8}
+.founder-quote p{font-size:clamp(20px,2.2vw,28px);line-height:1.55;letter-spacing:-.4px;max-width:900px;margin:22px auto;color:#252525}
+.founder-quote strong,.founder-quote small{display:block;line-height:1.7}
+.founder-quote small{font-size:13px;color:#666}
+.editorial-cta{margin:65px 0 20px;text-align:center;border-radius:22px;background:#f7f7f7;padding:50px 20px}
+.editorial-cta h2{font-size:30px;letter-spacing:-.75px;margin:0 0 9px}
+.editorial-cta p{font-size:15px;color:#666;margin:0 0 22px}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-image{width:100%;height:450px;object-fit:cover;border-radius:18px}
+.about-team{background:#fafafa;padding:35px clamp(25px,6vw,75px);border:1px solid #efefef;border-radius:19px}
+.about-team h2{font-size:28px;margin:0 0 12px}
+.about-team p{color:#626262;font-size:15px;line-height:1.85;max-width:850px}
+.contact-columns{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start;margin-bottom:75px}
+.contact-aside h2{font-size:30px;line-height:1.3;margin:0 0 12px}
+.contact-aside>p{color:#666;line-height:1.75;margin:0 0 32px}
+.contact-point{display:flex;gap:17px;align-items:flex-start;padding:13px 0}
+.contact-point span{font-size:21px;color:#00158b;min-width:30px}
+.contact-point strong{font-size:15px}
+.contact-point p{margin:6px 0;color:#666;font-size:14px}
+.contact-point a{color:inherit;text-decoration:none}
+.contact-aside .outline-btn{margin-top:20px}
+.contact-box{border:1px solid #e5e5e5;box-shadow:0 8px 32px #0000000b;border-radius:19px;padding:clamp(22px,3vw,36px)}
+.contact-box h2{font-size:24px;margin:0 0 10px}
+.contact-box>p{font-size:14px;line-height:1.65;color:#777;margin-bottom:23px}
+.contact-box .contact-form label{display:block;font-size:13px;font-weight:700;margin:0 0 16px}
+.contact-box .contact-form input,.contact-box .contact-form select,.contact-box .contact-form textarea{margin:7px 0 0;border:1px solid #d9d9d9;border-radius:10px;font-size:14px;font-weight:400;background:white;padding:13px 14px}
+.contact-box .contact-form textarea{min-height:130px;resize:vertical}
+.contact-box .contact-form button{width:100%;padding:16px 22px}
+.contact-box .legal-note{font-size:12px;color:#777;margin-top:15px}
+body[data-page="experiences"] .search-panel,body[data-page="services"] .search-panel{max-width:920px}
+body[data-page="experiences"] .air-search-shell,body[data-page="services"] .air-search-shell{padding:10px 0 27px}
+body[data-page="experiences"] .search-panel select,body[data-page="services"] .search-panel select{appearance:none;font-size:14px}
+@media(max-width:900px){.concierge-hero,.about-layout,.contact-columns{grid-template-columns:1fr;gap:25px}.concierge-hero-photo{min-height:240px}.concierge-hero-photo img{max-height:370px}.about-image{height:320px}.category-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-columns{gap:35px}.discovery-content{padding-top:32px}}
+@media(max-width:590px){.category-tiles{grid-template-columns:1fr}.discovery-content h1,.editorial-heading h1{font-size:34px}.discovery-section,.editorial-section{margin:36px 0}.catalog-empty{padding:28px 16px}.concierge-hero-copy{padding:30px 23px}.editorial-page .editorial-heading{padding:26px 0 25px}.founder-quote{padding:36px 23px}.contact-box{padding:22px}.editorial-cta{margin:38px 0}}
