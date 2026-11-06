@@ -30,3 +30,44 @@ body[data-page="home"] .menu-links a{font-size:15px}
 @media(max-width:1200px){.air-rail{grid-auto-columns:calc((100% - 3 * 16px)/4)}}
 @media(max-width:850px){.air-rail{grid-auto-columns:calc((100% - 2 * 14px)/3)}}
 @media(max-width:600px){.air-rail{grid-auto-columns:76%;gap:12px}.air-rail .listing-picture{aspect-ratio:1.1}.air-heading h2{font-size:19px}.air-heading button{width:32px;height:32px}.tour-gallery{bottom:58px;right:10px;font-size:12px}.tour-cta{gap:8px}.tour-launch{padding:14px 16px}}
+
+
+/* Airbnb-inspired ZeaStayz 2026 marketplace shell, blue Zea brand */
+:root{--accent:#00158b;--blue:#00158b;--navy:#00158b}
+.site-header{background:#fff;box-shadow:0 2px 0 #00000008}
+.nav-shell.air-nav{max-width:100%;min-height:100px;padding:10px clamp(22px,3.4vw,58px);display:grid;grid-template-columns:1fr auto 1fr;gap:24px}
+.brandlogo{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;color:#00158b;font-size:26px;font-weight:800;letter-spacing:-1px;text-decoration:none}
+.brandlogo span{line-height:1.1}
+.brandlogo .brand-img{width:48px;height:41px;object-fit:contain;flex:none}
+.air-top-tabs{display:flex;justify-content:center;align-items:center;gap:25px;order:initial!important;width:auto!important;flex-basis:auto!important;overflow:visible}
+.air-top-tabs a.browse-tab{display:flex;align-items:center;gap:10px;border-bottom:3px solid transparent;padding:15px 4px;color:#555;font-size:15px;white-space:nowrap;font-weight:650;text-decoration:none}
+.air-top-tabs a.browse-tab:hover{color:#00158b}
+.air-top-tabs a.browse-tab.active{border-color:#00158b;color:#181818}
+.tab-icon{display:inline-flex;align-items:center;justify-content:center;width:41px;height:41px;border-radius:50%;color:#00158b;background:#f1f3ff}
+.tab-icon svg{width:25px;height:25px}
+.air-top-tabs a.active .tab-icon{background:#e8edff}
+.nav-actions{justify-content:end;gap:14px}
+.nav-actions .host-action{font-size:14px;color:#222}
+.circle-action{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;border:none;width:42px;height:42px;background:#f3f3f3!important;color:#252525;padding:0;text-decoration:none;font-size:20px}
+.circle-action svg{width:21px;height:21px}
+.air-search-shell{padding:10px 0 24px;border-top:0;background:#fff;box-shadow:0 5px 18px #00000008}
+.air-search-shell .layout{max-width:1100px}
+.air-search-shell .search-panel{max-width:990px;margin:0 auto;display:flex;flex-wrap:nowrap;border-radius:100px;border:1px solid #dedede;padding:7px;box-shadow:0 7px 27px #00000015}
+.search-panel label{border-right:1px solid #ddd;min-height:54px;display:flex;flex-direction:column;justify-content:center;padding:8px 24px;font-size:12px;min-width:0;flex:1;color:#222}
+.search-panel label:first-child{flex:1.3}
+.search-panel label:last-of-type{border:0}
+.search-panel label strong{font-size:12px;color:#222;display:block;line-height:1.4}
+.search-panel input,.search-panel select{font-size:14px;margin-top:2px;line-height:22px;color:#666;border:0;outline:none}
+.search-panel button[type=submit]{width:54px;height:54px;display:flex;justify-content:center;align-items:center;border-radius:50%;padding:0;flex:none;font-size:31px;background:#00158b}
+body[data-page=home] .air-row:first-child{margin-top:40px}
+body[data-page=home] .intro:first-child{display:none}
+body[data-page=home] .air-heading h2{font-size:24px}
+body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 6 * 16px)/7);gap:16px}
+body[data-page=home] .air-rail .listing-picture{aspect-ratio:1.03}
+body[data-page=home] .listing-pill{background:#fff;color:#252525}
+body[data-page=home] .listing-price{color:#666}
+body[data-page=home] .listing-price strong{color:#555;font-weight:500}
+.nav-drop{z-index:60}
+@media(max-width:1300px){.nav-shell.air-nav{grid-template-columns:auto 1fr auto}.air-top-tabs{gap:12px}body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 4 * 15px)/5)}}
+@media(max-width:900px){.nav-shell.air-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;padding:10px 22px}.air-top-tabs{order:3!important;width:100%!important;justify-content:center;overflow-x:auto;gap:9px}.air-top-tabs a.browse-tab{font-size:13px;gap:5px}.tab-icon{width:36px;height:36px}.tab-icon svg{width:21px;height:21px}.air-search-shell .layout{padding:0 20px}body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 2 * 14px)/3)}}
+@media(max-width:560px){.nav-shell.air-nav{padding:10px 15px}.brandlogo{font-size:22px}.brandlogo .brand-img{width:36px;height:34px}.air-top-tabs{justify-content:flex-start}.air-top-tabs a.browse-tab{padding:10px 3px}.nav-actions .host-action{display:none}.air-search-shell{padding:8px 0 14px}.air-search-shell .search-panel{display:grid;grid-template-columns:1fr 1fr;border-radius:23px}.search-panel label{padding:8px 12px;min-height:49px}.search-panel label:nth-child(2){border-right:0}.search-panel button[type=submit]{grid-column:1/-1;border-radius:14px;width:100%;height:41px}.search-panel .checkout-field{display:none}body[data-page=home] .air-rail{grid-auto-columns:73%;gap:12px}}
