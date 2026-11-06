@@ -8,8 +8,8 @@
   const url = p => 'property.html?stay=' + encodeURIComponent(p.slug);
   const safe = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const searchParams = new URLSearchParams(location.search);
-  const saved = new Set(JSON.parse(localStorage.getItem('zea-saved') || '[]'));
-  const publishSaved = () => localStorage.setItem('zea-saved', JSON.stringify([...saved]));
+  const saved = (()=>{try{return new Set(JSON.parse(localStorage.getItem('zea-saved') || '[]'))}catch{return new Set()}})();
+  const publishSaved = () => {try{localStorage.setItem('zea-saved', JSON.stringify([...saved]))}catch{}};
   const page = document.body.dataset.page || 'home';
   const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
   const header = document.createElement('header');
