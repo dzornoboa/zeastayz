@@ -81,3 +81,47 @@ body{color:#222;font-size:15px}
 .air-row .air-rail .listing:hover{transform:translateY(-4px)}
 .site-header .nav-drop a{text-decoration:none}
 body[data-page="home"] .layout>.intro:not(:first-child){margin-top:22px}
+
+
+/* Exact ZeaStayz marketplace polish, based on the clean Airbnb reference. */
+html,body{margin:0;background:#fff;color:#222;font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:none}
+button,input,select,textarea{font-family:Arial,Helvetica,sans-serif}
+.layout{max-width:1630px;padding-left:clamp(24px,5.7vw,100px);padding-right:clamp(24px,5.7vw,100px)}
+.nav-shell.air-nav{min-height:94px;padding:8px clamp(24px,3.2vw,62px)}
+.air-top-tabs a.browse-tab{gap:11px;padding:17px 4px 13px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:650;color:#555}
+.air-top-tabs a.browse-tab.active{color:#222;border-bottom:3px solid #222}
+.air-top-tabs{gap:31px}
+.tab-icon,.air-top-tabs a.active .tab-icon{background:transparent!important;color:inherit;width:42px;height:45px;border-radius:0}
+.tab-emoji{font-size:30px;line-height:1;display:inline-block;filter:none}
+.nav-actions .host-action{font-weight:650;text-decoration:none!important}
+.circle-action{background:#f7f7f7!important}
+.air-search-shell{box-shadow:none;border-bottom:1px solid #eaeaea;padding:8px 0 30px}
+.air-search-shell .search-panel{max-width:920px;margin:0 auto!important;box-shadow:0 7px 28px #00000013;border:1px solid #ddd}
+.search-panel button[type=submit]{background:#00158b}
+.air-row{margin:30px 0 38px}
+.air-row.motion-reveal,.air-row .motion-reveal,.listing.motion-reveal{opacity:1!important;transform:none!important}
+.air-rail .listing,.listing-grid .listing{position:relative}
+.air-rail a,.listing-grid a{text-decoration:none!important;color:#222}
+.air-row .listing-title,.listing-grid .listing-title{font-weight:600;font-size:14px;text-decoration:none}
+.air-row .listing-meta,.listing-grid .listing-meta{font-size:13px;color:#717171}
+.air-row .listing-price,.listing-grid .listing-price{font-size:13px;color:#717171}
+.air-row .listing-price strong{font-weight:500;color:#666}
+body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 6 * 16px)/7)}
+body[data-page=home] .air-heading h2{font-weight:650;font-size:22px}
+body[data-page=home] .air-row:first-child{margin-top:48px}
+body[data-page=home] .air-heading h2 a{text-decoration:none}
+body[data-page=stays] .intro{padding:26px 0 8px}
+body[data-page=stays] .intro h1{font-size:27px;letter-spacing:-.7px}
+body[data-page=stays] .filters{margin:13px 0 16px}
+body[data-page=stays] .listing-grid{margin-top:18px!important}
+body[data-page=stays] #catalog>.search-panel{display:none!important}
+body[data-page=home] #catalog>.search-panel{display:none!important}
+body[data-page=stays] #catalog:empty{min-height:0}
+body[data-page=stays] .listing-grid a,body[data-page=home] .air-rail a{color:#222!important;text-decoration:none!important}
+body[data-page=stays] .listing-grid a:hover,body[data-page=home] .air-rail a:hover{text-decoration:none!important}
+body[data-page=stays] .listing-grid .listing-picture,body[data-page=home] .air-rail .listing-picture{border-radius:17px;overflow:hidden}
+@media(max-width:1300px){.air-top-tabs{gap:15px}body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 4 * 15px)/5)}}
+@media(max-width:850px){body[data-page=home] .air-rail{grid-auto-columns:calc((100% - 2 * 14px)/3)}}
+@media(max-width:560px){.layout{padding-left:18px;padding-right:18px}.air-top-tabs{gap:8px}.tab-emoji{font-size:24px}.tab-icon{width:30px;height:34px}.air-top-tabs a.browse-tab{font-size:12px;gap:5px}body[data-page=home] .air-rail{grid-auto-columns:75%}}
