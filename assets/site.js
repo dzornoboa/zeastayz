@@ -14,11 +14,24 @@
   const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
   const header = document.createElement('header');
   header.className='site-header';
-  header.innerHTML = '<div class="nav-shell"><a class="brandlogo" href="index.html" aria-label="ZeaStayz home"><span class="brandmark">✧</span>ZeaStayz</a><nav class="menu-links" aria-label="Primary navigation">'+navItems.map(([n,href],i)=>'<a href="'+href+'" class="'+((page==='home'&&i===0)||(page==='stays'&&i===1)||(page==='concierge'&&i===2)||(page==='about'&&i===3)||(page==='contact'&&i===4)?'active':'')+'">'+n+'</a>').join('')+'</nav><div class="nav-actions"><a href="mailto:info@zeahomes.com?subject=List%20my%20property">List your property</a><button id="menu-trigger" aria-label="More options" aria-expanded="false">☰</button></div><div id="nav-drop" class="nav-drop"><a href="stays.html?saved=1">♡ Saved stays</a><a href="contact.html">Help & contact</a><a href="https://zeastayz.com/" target="_blank" rel="noopener">Original ZeaStayz website ↗</a></div></div>';
+  const browseTabs=[['All','grid-2x2','index.html'],['Homes','house','stays.html?type=House'],['Hotels','bed-double','stays.html?type=Hotel'],['Experiences','sparkles','concierge.html#experiences'],['Services','concierge-bell','concierge.html']];
+  const icons={
+    'grid-2x2':'<rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/>',
+    'house':'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M10 21v-7h4v7"/>',
+    'bed-double':'<path d="M3 21V7m18 14V7M3 12h18v7H3zM5 7V5h14v2M7 12V9h4v3m2 0V9h4v3"/>',
+    'sparkles':'<path d="m12 3 1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3zM20 18l.8 2.2L23 21l-2.2.8L20 24l-.8-2.2L17 21l2.2-.8L20 18z"/>',
+    'concierge-bell':'<path d="M4 16a8 8 0 0 1 16 0H4zM2 19h20M12 7V5m-2 0h4"/>'
+  };
+  const navIcon=key=>'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+icons[key]+'</svg>';
+  const logo='<img class="brand-img" src="assets/zea-brand-symbol.svg" alt="" width="39" height="32"><span>ZeaStayz</span>';
+  header.innerHTML='<div class="nav-shell air-nav"><a class="brandlogo" href="index.html" aria-label="ZeaStayz home">'+logo+'</a><nav class="menu-links air-top-tabs" aria-label="Browse categories">'+browseTabs.map(([n,key,href],i)=>'<a class="browse-tab '+((page==='home'&&i===0)||(page==='stays'&&i===1)||(page==='concierge'&&i===4)?'active':'')+'" href="'+href+'"><span class="tab-icon">'+navIcon(key)+'</span><span>'+n+'</span></a>').join('')+'</nav><div class="nav-actions"><a class="host-action" href="contact.html?subject=List+my+property">Become a host</a><a class="circle-action" href="stays.html?saved=1" title="Saved stays" aria-label="Saved stays">'+navIcon('house')+'</a><button class="circle-action" id="menu-trigger" aria-label="More options" aria-expanded="false">☰</button></div><div id="nav-drop" class="nav-drop">'+navItems.map(([n,href])=>'<a href="'+href+'">'+n+'</a>').join('')+'<a href="stays.html?saved=1">♡ Saved stays</a><a href="https://zeastayz.com/" target="_blank" rel="noopener">Existing ZeaStayz website ↗</a></div></div>';
+  if(page==='home'||page==='stays'||page==='concierge'){
+    header.insertAdjacentHTML('beforeend','<div class="air-search-shell"><div class="layout" id="header-search-mount"></div></div>');
+  }
   document.body.prepend(header);
   const foot = document.createElement('footer');
   foot.className='site-footer';
-  foot.innerHTML='<div class="layout footer-cols"><div><a class="brandlogo" href="index.html"><span class="brandmark">✧</span>ZeaStayz</a><p>Premium Stays. Trusted Service. Local Insight.<br>Oyarifa, Accra, Ghana</p></div><div><strong>Explore</strong>'+navItems.map(([n,h])=>'<a href="'+h+'">'+n+'</a>').join('')+'</div><div><strong>Get in touch</strong><a href="tel:+233209154964">+233 20 915 4964</a><a href="mailto:info@zeahomes.com">info@zeahomes.com</a><a href="https://zeastayz.com/terms-and-conditions/" target="_blank" rel="noopener">Terms & conditions ↗</a></div></div><div class="layout" style="padding-top:30px;color:#808080;font-size:12px">© '+new Date().getFullYear()+' ZeaStayz. Property details and rates are subject to confirmation.</div>';
+  foot.innerHTML='<div class="layout footer-cols"><div><a class="brandlogo" href="index.html"><img class="brand-img" src="assets/zea-brand-symbol.svg" alt="" width="39" height="32"><span>ZeaStayz</span></a><p>Premium Stays. Trusted Service. Local Insight.<br>Oyarifa, Accra, Ghana</p></div><div><strong>Explore</strong>'+navItems.map(([n,h])=>'<a href="'+h+'">'+n+'</a>').join('')+'</div><div><strong>Get in touch</strong><a href="tel:+233209154964">+233 20 915 4964</a><a href="mailto:info@zeahomes.com">info@zeahomes.com</a><a href="https://zeastayz.com/terms-and-conditions/" target="_blank" rel="noopener">Terms & conditions ↗</a></div></div><div class="layout" style="padding-top:30px;color:#808080;font-size:12px">© '+new Date().getFullYear()+' ZeaStayz. Property details and rates are subject to confirmation.</div>';
   document.body.append(foot);
   $('#menu-trigger').addEventListener('click', () => {
     const open = $('#nav-drop').classList.toggle('open');
@@ -29,10 +42,18 @@
   const observer = ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) ? new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');observer.unobserve(e.target)}})},{threshold:.08}) : null;
   function reveal(root=document){$$('.motion-reveal',root).forEach(el=> observer?observer.observe(el):el.classList.add('revealed'))}
   document.addEventListener('click',e=>{const btn=e.target.closest('[data-save]');if(!btn)return;const slug=btn.dataset.save;if(saved.has(slug))saved.delete(slug);else saved.add(slug);publishSaved();btn.classList.toggle('saved',saved.has(slug));btn.setAttribute('aria-pressed',String(saved.has(slug)));btn.textContent=saved.has(slug)?'♥':'♡';});
-  function searchBar(){return '<form id="stay-search" class="search-panel"><label>Where<input name="where" placeholder="Search Accra neighbourhoods" value="'+safe(searchParams.get('where')||'')+'"></label><label>Check-in<input name="checkin" type="date" value="'+safe(searchParams.get('checkin')||'')+'"></label><label>Check-out<input name="checkout" type="date" value="'+safe(searchParams.get('checkout')||'')+'"></label><label>Guests<select name="guests">'+[1,2,3,4,5,6].map(n=>'<option value="'+n+'" '+((+(searchParams.get('guests')||2))===n?'selected':'')+'>'+n+' guest'+(n===1?'':'s')+'</option>').join('')+'</select></label><button type="submit">Search →</button></form>'}
+  function searchBar(){return '<form id="stay-search" class="search-panel"><label><strong>Where</strong><input name="where" placeholder="Search destinations" value="'+safe(searchParams.get('where')||'')+'"></label><label><strong>When</strong><input name="checkin" type="date" aria-label="Check-in" value="'+safe(searchParams.get('checkin')||'')+'"></label><label class="checkout-field"><strong>Check-out</strong><input name="checkout" type="date" aria-label="Check-out" value="'+safe(searchParams.get('checkout')||'')+'"></label><label><strong>Who</strong><select name="guests">'+[1,2,3,4,5,6].map(n=>'<option value="'+n+'" '+((+(searchParams.get('guests')||2))===n?'selected':'')+'>'+n+' guest'+(n===1?'':'s')+'</option>').join('')+'</select></label><button type="submit" aria-label="Search stays">⌕</button></form>'}
+  const attachSearch = root=>{
+    const form=$('#stay-search',root);if(!form)return;
+    form.addEventListener('submit',e=>{e.preventDefault();const v=new FormData(form);if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must follow check-in');return}location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString()});
+  };
+  if(page==='home'||page==='stays'){
+    const mount=$('#header-search-mount');
+    if(mount){mount.innerHTML=searchBar();attachSearch(mount)}
+  }
   const categories = ['All','Apartment','House','Condo','Villa','Hotel','Guest House'];
   function mountCatalog(root, isHome=false){
-    root.innerHTML=searchBar()+'<div class="filters" role="group" aria-label="Stay type">'+categories.map((n,i)=>'<button type="button" class="'+(i===0?'active':'')+'" data-category="'+n+'">'+n+'</button>').join('')+'</div><div id="result-count" class="listing-meta" aria-live="polite"></div><div id="listing-cards" class="listing-grid" style="margin-top:19px"></div><p class="legal-note">Prices are indicative, based on the existing ZeaStayz listings. Dates and availability require confirmation with the team.</p>';
+    root.innerHTML=(isHome?'':searchBar())+'<div class="filters" role="group" aria-label="Stay type">'+categories.map((n,i)=>'<button type="button" class="'+(i===0?'active':'')+'" data-category="'+n+'">'+n+'</button>').join('')+'</div><div id="result-count" class="listing-meta" aria-live="polite"></div><div id="listing-cards" class="listing-grid" style="margin-top:19px"></div><p class="legal-note">Prices are indicative, based on the existing ZeaStayz listings. Dates and availability require confirmation with the team.</p>';
     if(isHome){
       const rows=[
         ['Available in Accra this weekend',listings.slice(0,8)],
@@ -40,15 +61,13 @@
         ['Beautiful homes and villas',listings.filter(p=>p.type==='House'||p.type==='Condo')],
         ['Affordable apartments in Accra',listings.filter(p=>p.price<=1000)]
       ];
-      root.innerHTML=searchBar()+rows.map((row,i)=>'<section class="air-row motion-reveal"><div class="air-heading"><h2>'+row[0]+' <a aria-label="Explore all stays" href="stays.html">➜</a></h2><div><button aria-label="Scroll left" data-row-left="'+i+'">‹</button><button aria-label="Scroll right" data-row-right="'+i+'">›</button></div></div><div class="air-rail" id="air-rail-'+i+'">'+row[1].map(card).join('')+'</div></section>').join('')+'<p class="legal-note">Property prices and dates require confirmation with ZeaStayz before booking.</p>';
-      const form=$('#stay-search',root);
-      form.addEventListener('submit',e=>{e.preventDefault();const v=new FormData(form);if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must be later than check-in.');return}location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString()});
+      root.innerHTML=rows.map((row,i)=>'<section class="air-row motion-reveal"><div class="air-heading"><h2>'+row[0]+' <a aria-label="Explore all stays" href="stays.html">➜</a></h2><div><button aria-label="Scroll left" data-row-left="'+i+'">‹</button><button aria-label="Scroll right" data-row-right="'+i+'">›</button></div></div><div class="air-rail" id="air-rail-'+i+'">'+row[1].map(card).join('')+'</div></section>').join('')+'<p class="legal-note">Property prices and dates require confirmation with ZeaStayz before booking.</p>';
       $('[data-row-left]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowLeft,root).scrollBy({left:-700,behavior:'smooth'})));
       $('[data-row-right]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowRight,root).scrollBy({left:700,behavior:'smooth'})));
       reveal(root);
       return;
     }
-    let category='All';const form=$('#stay-search',root);let selectedSaved=searchParams.get('saved')==='1';
+    let category='All';const form=$('#stay-search',root)||$('#stay-search',header);let selectedSaved=searchParams.get('saved')==='1';
     if(selectedSaved){root.insertAdjacentHTML('afterbegin','<h2>Saved stays</h2>')}
     const render=()=>{
       const v=new FormData(form),where=String(v.get('where')||'').toLowerCase().trim(),guests=Number(v.get('guests')||1);
