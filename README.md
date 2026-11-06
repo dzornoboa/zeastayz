@@ -37,3 +37,8 @@ Before enabling production reservations: connect real inventory and a secure boo
 ## Deployment
 
 Project repository: `dzornoboa/zeastayz`. The intended Vercel project is `zeastayz`; deployment status must be verified in the Vercel dashboard before announcing the pages as live.
+
+
+## Enhanced 3D-depth property photo tour (November 2026)
+
+Visit `tour.html?stay=santa-cruz-bungalow` or click **Start immersive 3D photo tour** at the top of any listing profile. The full-screen tour uses CSS perspective, translated image planes, pointer-controlled camera yaw/pitch, wheel/key navigation, thumbnail controls, fullscreen mode, and an optional guided auto-tour. The homepage intentionally keeps an Airbnb-inspired structure with horizontal rows of listing cards. This is a **3D animated presentation of existing 2D listing images**, not a 360-degree panorama, a real 3D capture, or authentic room-to-room navigation; those require additional source assets. Camera perspective and photo position are artistic, not architectural dimensions.
