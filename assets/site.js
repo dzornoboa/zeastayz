@@ -14,7 +14,7 @@
   const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
   const header = document.createElement('header');
   header.className='site-header';
-  const browseTabs=[['All','grid-2x2','index.html'],['Homes','house','stays.html?type=House'],['Hotels','bed-double','stays.html?type=Hotel'],['Experiences','sparkles','concierge.html#experiences'],['Services','concierge-bell','concierge.html']];
+  const browseTabs=[['All','grid-2x2','index.html'],['Homes','house','stays.html'],['Hotels','bed-double','stays.html?type=Hotel'],['Experiences','sparkles','concierge.html#experiences'],['Services','concierge-bell','concierge.html']];
   const icons={
     'grid-2x2':'<rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/>',
     'house':'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M10 21v-7h4v7"/>',
@@ -67,7 +67,7 @@
       reveal(root);
       return;
     }
-    let category='All';const form=$('#stay-search',root)||$('#stay-search',header);let selectedSaved=searchParams.get('saved')==='1';
+    let category=categories.includes(searchParams.get('type'))?searchParams.get('type'):'All';const form=$('#stay-search',root)||$('#stay-search',header);let selectedSaved=searchParams.get('saved')==='1';
     if(selectedSaved){root.insertAdjacentHTML('afterbegin','<h2>Saved stays</h2>')}
     const render=()=>{
       const v=new FormData(form),where=String(v.get('where')||'').toLowerCase().trim(),guests=Number(v.get('guests')||1);
@@ -75,7 +75,8 @@
       const grid=$('#listing-cards',root);grid.innerHTML=items.length?items.map(card).join(''):'<p class="no-results">No matching stays yet. Try another location, property type or guest count.</p>';
       $('#result-count',root).textContent=items.length+' stay'+(items.length===1?'':'s')+' found';reveal(grid);
     };
-    $$('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
+    $('[data-category]',root).forEach(b=>b.classList.toggle('active',b.dataset.category===category));
+    $('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
     form.addEventListener('submit',e=>{e.preventDefault();const v=new FormData(form);if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must be later than check-in.');return}if(isHome){location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString()}else render()});
     if(!isHome)form.querySelectorAll('input,select').forEach(i=>i.addEventListener('change',render));
     render();
