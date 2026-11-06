@@ -62,8 +62,8 @@
         ['Affordable apartments in Accra',listings.filter(p=>p.price<=1000)]
       ];
       root.innerHTML=rows.map((row,i)=>'<section class="air-row motion-reveal"><div class="air-heading"><h2>'+row[0]+' <a aria-label="Explore all stays" href="stays.html">➜</a></h2><div><button aria-label="Scroll left" data-row-left="'+i+'">‹</button><button aria-label="Scroll right" data-row-right="'+i+'">›</button></div></div><div class="air-rail" id="air-rail-'+i+'">'+row[1].map(card).join('')+'</div></section>').join('')+'<p class="legal-note">Property prices and dates require confirmation with ZeaStayz before booking.</p>';
-      $('[data-row-left]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowLeft,root).scrollBy({left:-700,behavior:'smooth'})));
-      $('[data-row-right]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowRight,root).scrollBy({left:700,behavior:'smooth'})));
+      $$('[data-row-left]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowLeft,root).scrollBy({left:-700,behavior:'smooth'})));
+      $$('[data-row-right]',root).forEach(b=>b.addEventListener('click',()=>$('#air-rail-'+b.dataset.rowRight,root).scrollBy({left:700,behavior:'smooth'})));
       reveal(root);
       return;
     }
@@ -75,8 +75,8 @@
       const grid=$('#listing-cards',root);grid.innerHTML=items.length?items.map(card).join(''):'<p class="no-results">No matching stays yet. Try another location, property type or guest count.</p>';
       $('#result-count',root).textContent=items.length+' stay'+(items.length===1?'':'s')+' found';reveal(grid);
     };
-    $('[data-category]',root).forEach(b=>b.classList.toggle('active',b.dataset.category===category));
-    $('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
+    $$('[data-category]',root).forEach(b=>b.classList.toggle('active',b.dataset.category===category));
+    $$('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
     // Header search performs navigation; local filters refresh the listings.
     if(!isHome)form.querySelectorAll('input,select').forEach(i=>i.addEventListener('change',render));
     render();
