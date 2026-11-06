@@ -11,10 +11,10 @@
   const saved = (()=>{try{return new Set(JSON.parse(localStorage.getItem('zea-saved') || '[]'))}catch{return new Set()}})();
   const publishSaved = () => {try{localStorage.setItem('zea-saved', JSON.stringify([...saved]))}catch{}};
   const page = document.body.dataset.page || 'home';
-  const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
+  const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Experiences','experiences.html'],['Services','services.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
   const header = document.createElement('header');
   header.className='site-header';
-  const browseTabs=[['All','🌍','index.html'],['Homes','🏡','stays.html'],['Hotels','🛎️','stays.html?type=Hotel'],['Experiences','🎈','concierge.html#experiences'],['Services','🍽️','concierge.html']];
+  const browseTabs=[['All','🌍','index.html'],['Homes','🏡','stays.html'],['Hotels','🛎️','stays.html?type=Hotel'],['Experiences','🎈','experiences.html'],['Services','🛎️','services.html']];
   const icons={
     'grid-2x2':'<rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/>',
     'house':'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M10 21v-7h4v7"/>',
@@ -24,8 +24,8 @@
   };
   const navIcon=key=> icons[key] ? '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+icons[key]+'</svg>' : '<span aria-hidden="true" class="tab-emoji">'+key+'</span>';
   const logo='<img class="brand-img" src="assets/zea-brand-symbol.svg" alt="" width="39" height="32"><span>ZeaStayz</span>';
-  header.innerHTML='<div class="nav-shell air-nav"><a class="brandlogo" href="index.html" aria-label="ZeaStayz home">'+logo+'</a><nav class="menu-links air-top-tabs" aria-label="Browse categories">'+browseTabs.map(([n,key,href],i)=>'<a class="browse-tab '+((page==='home'&&i===0)||(page==='stays'&&i===1)||(page==='concierge'&&i===4)?'active':'')+'" href="'+href+'"><span class="tab-icon">'+navIcon(key)+'</span><span>'+n+'</span></a>').join('')+'</nav><div class="nav-actions"><a class="host-action" href="contact.html?subject=List+my+property">Become a host</a><a class="circle-action" href="stays.html?saved=1" title="Saved stays" aria-label="Saved stays">'+navIcon('house')+'</a><button class="circle-action" id="menu-trigger" aria-label="More options" aria-expanded="false">☰</button></div><div id="nav-drop" class="nav-drop">'+navItems.map(([n,href])=>'<a href="'+href+'">'+n+'</a>').join('')+'<a href="stays.html?saved=1">♡ Saved stays</a><a href="https://zeastayz.com/" target="_blank" rel="noopener">Existing ZeaStayz website ↗</a></div></div>';
-  if(page==='home'||page==='stays'||page==='concierge'){
+  header.innerHTML='<div class="nav-shell air-nav"><a class="brandlogo" href="index.html" aria-label="ZeaStayz home">'+logo+'</a><nav class="menu-links air-top-tabs" aria-label="Browse categories">'+browseTabs.map(([n,key,href],i)=>'<a class="browse-tab '+((page==='home'&&i===0)||(page==='stays'&&i===1)||(page==='experiences'&&i===3)||(page==='services'&&i===4)?'active':'')+'" href="'+href+'"><span class="tab-icon">'+navIcon(key)+'</span><span>'+n+'</span></a>').join('')+'</nav><div class="nav-actions"><a class="host-action" href="contact.html?subject=List+my+property">Become a host</a><a class="circle-action" href="stays.html?saved=1" title="Saved stays" aria-label="Saved stays">'+navIcon('house')+'</a><button class="circle-action" id="menu-trigger" aria-label="More options" aria-expanded="false">☰</button></div><div id="nav-drop" class="nav-drop">'+navItems.map(([n,href])=>'<a href="'+href+'">'+n+'</a>').join('')+'<a href="stays.html?saved=1">♡ Saved stays</a><a href="https://zeastayz.com/" target="_blank" rel="noopener">Existing ZeaStayz website ↗</a></div></div>';
+  if(page==='home'||page==='stays'||page==='experiences'||page==='services'){
     header.insertAdjacentHTML('beforeend','<div class="air-search-shell"><div class="layout" id="header-search-mount"></div></div>');
   }
   document.body.prepend(header);
@@ -43,13 +43,23 @@
   function reveal(root=document){$$('.motion-reveal',root).forEach(el=> observer?observer.observe(el):el.classList.add('revealed'))}
   document.addEventListener('click',e=>{const btn=e.target.closest('[data-save]');if(!btn)return;const slug=btn.dataset.save;if(saved.has(slug))saved.delete(slug);else saved.add(slug);publishSaved();btn.classList.toggle('saved',saved.has(slug));btn.setAttribute('aria-pressed',String(saved.has(slug)));btn.textContent=saved.has(slug)?'♥':'♡';});
   function searchBar(){return '<form id="stay-search" class="search-panel"><label><strong>Where</strong><input name="where" placeholder="Search destinations" value="'+safe(searchParams.get('where')||'')+'"></label><label><strong>When</strong><input name="checkin" type="date" aria-label="Check-in" value="'+safe(searchParams.get('checkin')||'')+'"></label><label class="checkout-field"><strong>Check-out</strong><input name="checkout" type="date" aria-label="Check-out" value="'+safe(searchParams.get('checkout')||'')+'"></label><label><strong>Who</strong><select name="guests">'+[1,2,3,4,5,6].map(n=>'<option value="'+n+'" '+((+(searchParams.get('guests')||2))===n?'selected':'')+'>'+n+' guest'+(n===1?'':'s')+'</option>').join('')+'</select></label><button type="submit" aria-label="Search stays">⌕</button></form>'}
+  const marketSearchBar = () => '<form class="search-panel" id="market-search"><label><strong>Where</strong><input type="text" name="where" placeholder="Search destinations" autocomplete="off" value="'+safe(searchParams.get('where')||'')+'"></label><label><strong>When</strong><input name="date" type="date" aria-label="Preferred date"></label><label><strong>'+(page==='services'?'Type of service':'Type of experience')+'</strong><select name="kind">'+(page==='services'?['All services','Airport transfers','In-home meals','Wellness','Cleaning','Grocery stocking','On-call assistance']:['All experiences','Cultural experiences','Day trips']).map(v=>'<option>'+v+'</option>').join('')+'</select></label><button type="submit" aria-label="Search">⌕</button></form>';
   const attachSearch = root=>{
-    const form=$('#stay-search',root);if(!form)return;
-    form.addEventListener('submit',e=>{e.preventDefault();const v=new FormData(form);if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must follow check-in');return}location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString()});
+    const form=$('#stay-search',root)||$('#market-search',root);if(!form)return;
+    form.addEventListener('submit',e=>{
+      e.preventDefault();const v=new FormData(form);
+      if(page==='services'||page==='experiences'){
+        const message=$('#market-search-result');
+        if(message){const place=String(v.get('where')||'Accra').trim();message.textContent='No '+(page==='services'?'bookable services':'bookable experiences')+' are listed for '+place+' yet. Contact our concierge team for a personalised enquiry.';message.scrollIntoView({behavior:'smooth',block:'center'});}
+        return;
+      }
+      if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must follow check-in');return}
+      location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString();
+    });
   };
-  if(page==='home'||page==='stays'){
+  if(['home','stays','services','experiences'].includes(page)){
     const mount=$('#header-search-mount');
-    if(mount){mount.innerHTML=searchBar();attachSearch(mount)}
+    if(mount){mount.innerHTML=['services','experiences'].includes(page)?marketSearchBar():searchBar();attachSearch(mount)}
   }
   const categories = ['All','Apartment','House','Condo','Villa','Hotel','Guest House'];
   function mountCatalog(root, isHome=false){
