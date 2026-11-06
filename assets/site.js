@@ -123,6 +123,6 @@
       reveal(target);
     }
   }
-  const contactForm=$('#contact-form');if(contactForm){contactForm.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(contactForm);location.href='mailto:info@zeahomes.com?subject='+encodeURIComponent(d.get('subject')||'ZeaStayz enquiry')+'&body='+encodeURIComponent('Name: '+d.get('name')+'\nEmail: '+d.get('email')+'\n\n'+d.get('message'))})}
+  const contactForm=$('#contact-form');if(contactForm){const requested=searchParams.get('subject');if(requested){const options=[...contactForm.elements.subject.options];const match=options.find(o=>o.value.toLowerCase()===requested.toLowerCase())||options.find(o=>o.value.toLowerCase().includes(requested.toLowerCase())||requested.toLowerCase().includes(o.value.toLowerCase()));if(match)contactForm.elements.subject.value=match.value;}contactForm.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(contactForm);location.href='mailto:info@zeahomes.com?subject='+encodeURIComponent(d.get('subject')||'ZeaStayz enquiry')+'&body='+encodeURIComponent('Name: '+d.get('name')+'\nEmail: '+d.get('email')+'\n\n'+d.get('message'))})}
   reveal();
 })();
