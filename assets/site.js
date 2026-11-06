@@ -76,7 +76,7 @@
       $('#result-count',root).textContent=items.length+' stay'+(items.length===1?'':'s')+' found';reveal(grid);
     };
     $$('[data-category]',root).forEach(b=>b.classList.toggle('active',b.dataset.category===category));
-    $$('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
+    $$('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
     // Header search performs navigation; local filters refresh the listings.
     if(!isHome)form.querySelectorAll('input,select').forEach(i=>i.addEventListener('change',render));
     render();
