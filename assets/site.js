@@ -14,7 +14,7 @@
   const navItems=[['Home','index.html'],['Explore stays','stays.html'],['Concierge services','concierge.html'],['About ZeaStayz','about.html'],['Contact','contact.html']];
   const header = document.createElement('header');
   header.className='site-header';
-  const browseTabs=[['All','grid-2x2','index.html'],['Homes','house','stays.html'],['Hotels','bed-double','stays.html?type=Hotel'],['Experiences','sparkles','concierge.html#experiences'],['Services','concierge-bell','concierge.html']];
+  const browseTabs=[['All','🌍','index.html'],['Homes','🏡','stays.html'],['Hotels','🛎️','stays.html?type=Hotel'],['Experiences','🎈','concierge.html#experiences'],['Services','🍽️','concierge.html']];
   const icons={
     'grid-2x2':'<rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/>',
     'house':'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M10 21v-7h4v7"/>',
@@ -22,7 +22,7 @@
     'sparkles':'<path d="m12 3 1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3zM20 18l.8 2.2L23 21l-2.2.8L20 24l-.8-2.2L17 21l2.2-.8L20 18z"/>',
     'concierge-bell':'<path d="M4 16a8 8 0 0 1 16 0H4zM2 19h20M12 7V5m-2 0h4"/>'
   };
-  const navIcon=key=>'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+icons[key]+'</svg>';
+  const navIcon=key=> icons[key] ? '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+icons[key]+'</svg>' : '<span aria-hidden="true" class="tab-emoji">'+key+'</span>';
   const logo='<img class="brand-img" src="assets/zea-brand-symbol.svg" alt="" width="39" height="32"><span>ZeaStayz</span>';
   header.innerHTML='<div class="nav-shell air-nav"><a class="brandlogo" href="index.html" aria-label="ZeaStayz home">'+logo+'</a><nav class="menu-links air-top-tabs" aria-label="Browse categories">'+browseTabs.map(([n,key,href],i)=>'<a class="browse-tab '+((page==='home'&&i===0)||(page==='stays'&&i===1)||(page==='concierge'&&i===4)?'active':'')+'" href="'+href+'"><span class="tab-icon">'+navIcon(key)+'</span><span>'+n+'</span></a>').join('')+'</nav><div class="nav-actions"><a class="host-action" href="contact.html?subject=List+my+property">Become a host</a><a class="circle-action" href="stays.html?saved=1" title="Saved stays" aria-label="Saved stays">'+navIcon('house')+'</a><button class="circle-action" id="menu-trigger" aria-label="More options" aria-expanded="false">☰</button></div><div id="nav-drop" class="nav-drop">'+navItems.map(([n,href])=>'<a href="'+href+'">'+n+'</a>').join('')+'<a href="stays.html?saved=1">♡ Saved stays</a><a href="https://zeastayz.com/" target="_blank" rel="noopener">Existing ZeaStayz website ↗</a></div></div>';
   if(page==='home'||page==='stays'||page==='concierge'){
@@ -53,7 +53,7 @@
   }
   const categories = ['All','Apartment','House','Condo','Villa','Hotel','Guest House'];
   function mountCatalog(root, isHome=false){
-    root.innerHTML=(isHome?'':searchBar())+'<div class="filters" role="group" aria-label="Stay type">'+categories.map((n,i)=>'<button type="button" class="'+(i===0?'active':'')+'" data-category="'+n+'">'+n+'</button>').join('')+'</div><div id="result-count" class="listing-meta" aria-live="polite"></div><div id="listing-cards" class="listing-grid" style="margin-top:19px"></div><p class="legal-note">Prices are indicative, based on the existing ZeaStayz listings. Dates and availability require confirmation with the team.</p>';
+    root.innerHTML='<div class="filters" role="group" aria-label="Stay type">'+categories.map((n,i)=>'<button type="button" class="'+(i===0?'active':'')+'" data-category="'+n+'">'+n+'</button>').join('')+'</div><div id="result-count" class="listing-meta" aria-live="polite"></div><div id="listing-cards" class="listing-grid" style="margin-top:19px"></div><p class="legal-note">Prices are indicative, based on the existing ZeaStayz listings. Dates and availability require confirmation with the team.</p>';
     if(isHome){
       const rows=[
         ['Available in Accra this weekend',listings.slice(0,8)],
@@ -67,7 +67,7 @@
       reveal(root);
       return;
     }
-    let category=categories.includes(searchParams.get('type'))?searchParams.get('type'):'All';const form=$('#stay-search',root)||$('#stay-search',header);let selectedSaved=searchParams.get('saved')==='1';
+    let category=categories.includes(searchParams.get('type'))?searchParams.get('type'):'All';const form=$('#stay-search',header);let selectedSaved=searchParams.get('saved')==='1';
     if(selectedSaved){root.insertAdjacentHTML('afterbegin','<h2>Saved stays</h2>')}
     const render=()=>{
       const v=new FormData(form),where=String(v.get('where')||'').toLowerCase().trim(),guests=Number(v.get('guests')||1);
@@ -77,7 +77,7 @@
     };
     $('[data-category]',root).forEach(b=>b.classList.toggle('active',b.dataset.category===category));
     $('[data-category]',root).forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;$$('[data-category]',root).forEach(x=>x.classList.toggle('active',x===b));render()}));
-    form.addEventListener('submit',e=>{e.preventDefault();const v=new FormData(form);if(v.get('checkin')&&v.get('checkout')&&v.get('checkout')<=v.get('checkin')){alert('Check-out must be later than check-in.');return}if(isHome){location.href='stays.html?'+new URLSearchParams([...v.entries()]).toString()}else render()});
+    // Header search performs navigation; local filters refresh the listings.
     if(!isHome)form.querySelectorAll('input,select').forEach(i=>i.addEventListener('change',render));
     render();
   }
